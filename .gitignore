@@ -1,1 +1,16 @@
 
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Output files
+*.json
+*.md
+
+# State files
+terraform.tfstate*
+drift_report.*
+
+# System files
+.DS_Store
