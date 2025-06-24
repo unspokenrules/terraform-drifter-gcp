@@ -29,10 +29,10 @@ Built for:
 ##  🧱Prereqs You Must Have
 Before anything else:
 
-✅ [ ] You have Python 3.10+ installed
-✅ [ ] You have gcloud CLI installed and authenticated
-✅ [ ] You’ve cloned this GitHub repo locally
-✅ [ ] You’ve exported your Terraform state file as JSON
+- ✅ [ ] You have Python 3.10+ installed
+- ✅ [ ] You have gcloud CLI installed and authenticated
+- ✅ [ ] You’ve cloned this GitHub repo locally
+- ✅ [ ] You’ve exported your Terraform state file as JSON
 
 If any of these aren’t done, pause and fix it now. Drift detection will break otherwise.
 
