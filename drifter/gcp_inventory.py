@@ -1,31 +1,28 @@
+# drifter/gcp_inventory.py
 from google.cloud import asset_v1
 
 def list_gcp_resources(project_id):
-    """
-    List active GCP resources in the given project using Cloud Asset Inventory.
-    Returns a list of (type, name) dicts.
-    """
     client = asset_v1.AssetServiceClient()
     scope = f"projects/{project_id}"
-
     asset_types = [
         "compute.googleapis.com/Instance",
-        "storage.googleapis.com/Bucket",
+        "iam.googleapis.com/Role"
     ]
 
-    request = asset_v1.ListAssetsRequest(
-        parent=scope,
+    results = []
+
+    request = asset_v1.SearchAllResourcesRequest(
+        scope=scope,
         asset_types=asset_types,
-        content_type=asset_v1.ContentType.RESOURCE,
+        page_size=100,
     )
 
-    results = []
-    for response in client.list_assets(request=request):
-        asset = response.asset
-        resource = asset.resource.data
+    for resource in client.search_all_resources(request=request):
+        name = resource.name.split("/")[-1]
+
         results.append({
-            "type": asset.asset_type,
-            "name": resource.get("name", "unknown")
+            "type": resource.asset_type,
+            "name": name
         })
 
     return results
