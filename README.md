@@ -11,6 +11,19 @@ Built for:
 
 ---
 
+## 💡 Why This Exists
+
+Terraform is only as good as your discipline.  
+Most infra teams **accumulate ghosts** — resources that are:
+- Manually created
+- Forgotten
+- Never removed
+
+This tool forces visibility.  
+It makes Terraform the source of truth again.
+
+---
+
 ## ✨ Features at a Glance
 
 | Capability                          | Status    |
@@ -24,6 +37,24 @@ Built for:
 | CLI interface                       | ✅ Yes     |
 | CI/CD integration ready             | ✅ Yes     |
 | Easy to extend                      | ✅ Yes     |
+
+---
+
+## 📷 Sample Drift Report (Rendered)
+
+![Image](https://github.com/user-attachments/assets/ffc5d3a8-dc06-4209-9af8-c08930c50e78)
+
+---
+
+## 📦 Supported Resource Types
+
+| Terraform Type                     | GCP Asset Type                      |
+|-----------------------------------|-------------------------------------|
+| `google_compute_instance`         | `compute.googleapis.com/Instance`   |
+| `google_project_iam_custom_role`  | `iam.googleapis.com/Role`           |
+| `google_storage_bucket`           | `storage.googleapis.com/Bucket`     |
+
+Extending support is as easy as adding new mappings in `tf_parser.py` and `gcp_inventory.py`.
 
 ---
 
@@ -77,33 +108,6 @@ Want to extend this? You’ll mostly be editing:
 | `core.py`                | Diff logic: GCP vs Terraform              |
 | `reporter.py`            | Markdown + JSON report generation         |
 
----
-
-## 💡 Why This Exists
-
-Terraform is only as good as your discipline.  
-Most infra teams **accumulate ghosts** — resources that are:
-- Manually created
-- Forgotten
-- Never removed
-
-This tool forces visibility.  
-It makes Terraform the source of truth again.
 
 ---
-## 📷 Sample Drift Report (Rendered)
-
-![Image](https://github.com/user-attachments/assets/ffc5d3a8-dc06-4209-9af8-c08930c50e78)
-
----
-
-## 📦 Supported Resource Types
-
-| Terraform Type                     | GCP Asset Type                      |
-|-----------------------------------|-------------------------------------|
-| `google_compute_instance`         | `compute.googleapis.com/Instance`   |
-| `google_project_iam_custom_role`  | `iam.googleapis.com/Role`           |
-| `google_storage_bucket`           | `storage.googleapis.com/Bucket`     |
-
-Extending support is as easy as adding new mappings in `tf_parser.py` and `gcp_inventory.py`.
 
