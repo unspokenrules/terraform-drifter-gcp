@@ -1,127 +1,102 @@
-# terraform-drifter-gcp
+# 🚨 Terraform Drifter for GCP
 
-> 🚨 Detect unmanaged, orphaned, and drifted resources in GCP by comparing live infrastructure with your Terraform state.
+> **"You think you're using Terraform. You're not. You're using Terraform plus a graveyard of unmanaged, forgotten resources in GCP."**
 
----
-
-## 🧠 What is Drifter?
-
-**Drifter** is a CLI tool that finds real-world GCP resources that exist outside your Terraform state. It helps cloud engineers detect:
-
-- 🧟‍♀️ **Zombie resources** — resources deployed manually or forgotten
-- 🔥 **Drifted configurations** — changes in resource config that Terraform doesn't know about
-- ❌ **Stale declarations** — Terraform state entries that point to deleted infrastructure
-
-**Why it matters**:  
-If Terraform doesn’t manage it, you don’t control it.  
-Drifter closes the gap between what’s deployed and what’s declared.
+This tool shows you the truth.
 
 ---
 
-## 🔧 Supported Resources (v0.1)
+## 🧠 What It Is
 
-- `google_compute_instance`
-- `google_storage_bucket`
-- `google_sql_database_instance`
-- `google_pubsub_topic`
-- (more coming...)
+**Terraform Drifter for GCP** compares your Terraform state to the actual resources running in Google Cloud.  
+It flags what Terraform doesn't know about (unmanaged), what no longer exists (stale), and what it does manage (clean).
+
+Built for:
+- Cloud engineers
+- SREs
+- Security teams
+- Anyone who gives a damn about **infra hygiene**
 
 ---
 
-## 🚀 Quickstart
+## ✨ Features at a Glance
 
-### Install requirements:
+| Capability                          | Status    |
+|-------------------------------------|-----------|
+| Compare Terraform state vs GCP live | ✅ Yes     |
+| Detect unmanaged resources          | ✅ Yes     |
+| Detect stale state entries          | ✅ Yes     |
+| Markdown & JSON reporting           | ✅ Yes     |
+| Compute Engine support              | ✅ Yes     |
+| Cloud Storage support               | ✅ Yes     |
+| CLI interface                       | ✅ Yes     |
+| CI/CD integration ready             | ✅ Yes     |
+| Easy to extend                      | ✅ Yes     |
+
+---
+
+## ⚡ TL;DR (One-Minute Setup)
 
 ```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### Authenticate with GCP:
-```bash
+# Auth to GCP
 gcloud auth application-default login
-```
 
-### Run Drifter:
-
-```bash
+# Run drift check
 python cli.py \
-  --project=my-gcp-project \
-  --tfstate=./terraform.tfstate \
-  --output=drift_report.md
+  --project your-gcp-project-id \
+  --tfstate terraform.tfstate.json \
+  --md drift_report.md \
+  --json drift_report.json
 ```
 
 ---
 
-## 📊 Output Example
-
-```markdown
-# Drift Report — my-gcp-project
-
-## Unmanaged Resources
-
-- `google_compute_instance` → `dev-vm-1` (not found in TF)
-- `google_storage_bucket` → `temp-logs-bucket` (not defined in TF)
-
-## Drifted Resources
-
-- `google_sql_database_instance` → `prod-db`
-    - Terraform says tier: `db-f1-micro`
-    - GCP says tier: `db-custom-2-7680`
-
-## Missing Resources in GCP
-
-- `google_pubsub_topic` → `tf-logs-topic` (declared in TF, not found in GCP)
-```
-
----
-
-## 🛠 Features
-
-- ✅ Compare live GCP assets with Terraform state
-- ✅ Identify unmanaged & drifted resources
-- ✅ Markdown/JSON/HTML report output
-- ✅ Config file for exclusions
-- ✅ GitHub Action support (WIP)
-
----
-
-## 📁 Project Structure
+## 🧪 Output Example
 
 ```
-terraform-drifter-gcp/
-├── drifter/
-│   ├── cli.py
-│   ├── core.py
-│   ├── tf_parser.py
-│   ├── gcp_inventory.py
-│   ├── reporter.py
-│   └── utils.py
-├── examples/
-│   └── sample_state.json
-├── tests/
-│   └── test_core.py
-├── requirements.txt
-└── README.md
+=== Unmanaged Resources ===
+compute.googleapis.com/Instance - rogue-vm
+storage.googleapis.com/Bucket - drift-bucket
+
+=== Stale Resources ===
+google_compute_instance - ghost-vm
+
+=== Managed Resources ===
+compute.googleapis.com/Instance - tf-managed-vm
 ```
 
----
-
-
-## 🤝 Contributing
-
-Contributions welcome. Open an issue or submit a PR — especially for:
-- Support for more resource types
-- Report enhancements
-- Drift detection logic
+- ✅ **Unmanaged**: exists in GCP, not in Terraform
+- ❌ **Stale**: exists in Terraform state, not in GCP
+- 🔒 **Managed**: exists in both
 
 ---
 
-## ⚠️ Disclaimer
+## 🔧 Developer Notes
 
-This tool is **read-only by default**. It does **not** delete or modify any GCP resources or Terraform state. Always review drift reports manually.
+Want to extend this? You’ll mostly be editing:
+
+| File                     | What it handles                          |
+|--------------------------|-------------------------------------------|
+| `gcp_inventory.py`       | Fetch live GCP assets                     |
+| `tf_parser.py`           | Parse Terraform state                     |
+| `core.py`                | Diff logic: GCP vs Terraform              |
+| `reporter.py`            | Markdown + JSON report generation         |
 
 ---
 
-## 👨‍💻 Author
+## 💡 Why This Exists
 
-Built by [@unspokenrules](https://github.com/unspokenrules) — because infrastructure should never be a guessing game.
+Terraform is only as good as your discipline.  
+Most infra teams **accumulate ghosts** — resources that are:
+- Manually created
+- Forgotten
+- Never removed
+
+This tool forces visibility.  
+It makes Terraform the source of truth again.
+
+---
+
