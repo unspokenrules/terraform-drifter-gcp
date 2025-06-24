@@ -8,7 +8,6 @@ Built for:
 - Cloud engineers
 - SREs
 - Security teams
-- Anyone who gives a damn about **infra hygiene**
 
 ---
 
