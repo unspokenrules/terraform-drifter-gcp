@@ -1,5 +1,3 @@
-
-
 from google.cloud import asset_v1
 
 def list_gcp_resources(project_id):
