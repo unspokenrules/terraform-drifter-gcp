@@ -1,4 +1,3 @@
-
 def compare_resources(tf_resources, gcp_resources):
     """
     Compare Terraform resources and live GCP resources.
