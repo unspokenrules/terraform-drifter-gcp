@@ -32,9 +32,6 @@ It makes Terraform the source of truth again.
 | Detect unmanaged resources          | ✅ Yes     |
 | Detect stale state entries          | ✅ Yes     |
 | Markdown & JSON reporting           | ✅ Yes     |
-| Compute Engine support              | ✅ Yes     |
-| Cloud Storage support               | ✅ Yes     |
-| IAM Roles support                   | ✅ Yes     |
 | CLI interface                       | ✅ Yes     |
 | CI/CD integration ready             | ✅ Yes     |
 | Easy to extend                      | ✅ Yes     |
