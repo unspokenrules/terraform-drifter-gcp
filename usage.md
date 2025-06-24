@@ -17,14 +17,6 @@ Use this repo when:
 - You need to validate that your infrastructure hasn’t drifted from its declared state
 - You’re building pipelines that gate deployments on infrastructure consistency
 
-### 📦 What It Deploys
-- VPC network
-- Subnets
-- Cloud Router
-- Cloud NAT configuration
-
-More components can be added modularly.
-
 ### ⚡️ Why This Is Better Than Defaults
 - Built-in drift detection focus
 - Terraform native—works with CI/CD and remote backends
