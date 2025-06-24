@@ -91,4 +91,19 @@ This tool forces visibility.
 It makes Terraform the source of truth again.
 
 ---
+## 📷 Sample Drift Report (Rendered)
+
+![Image](https://github.com/user-attachments/assets/ffc5d3a8-dc06-4209-9af8-c08930c50e78)
+
+---
+
+## 📦 Supported Resource Types
+
+| Terraform Type                     | GCP Asset Type                      |
+|-----------------------------------|-------------------------------------|
+| `google_compute_instance`         | `compute.googleapis.com/Instance`   |
+| `google_project_iam_custom_role`  | `iam.googleapis.com/Role`           |
+| `google_storage_bucket`           | `storage.googleapis.com/Bucket`     |
+
+Extending support is as easy as adding new mappings in `tf_parser.py` and `gcp_inventory.py`.
 
