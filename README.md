@@ -1,11 +1,4 @@
 # 🚨 Terraform Drifter for GCP
-
-> **"You think you're using Terraform. You're not. You're using Terraform plus a graveyard of unmanaged, forgotten resources in GCP."**
-
-This tool shows you the truth.
-
----
-
 ## 🧠 What It Is
 
 **Terraform Drifter for GCP** compares your Terraform state to the actual resources running in Google Cloud.  
